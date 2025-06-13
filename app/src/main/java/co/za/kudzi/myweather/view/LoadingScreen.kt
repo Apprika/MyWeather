@@ -16,12 +16,12 @@ fun LoadingScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-            CircularProgressIndicator()
+        CircularProgressIndicator()
     }
 }
 
 @Preview
 @Composable
-fun DataLoadingScreen_Preview(){
+fun DataLoadingScreen_Preview() {
     LoadingScreen()
 }

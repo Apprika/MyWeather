@@ -6,7 +6,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class ForecastRepository @Inject constructor(private val apiService: WeatherService) {
-    fun getForecast(
+    suspend fun getForecast(
         latitude: Double,
         longitude: Double,
     ): Response<Forecast> {

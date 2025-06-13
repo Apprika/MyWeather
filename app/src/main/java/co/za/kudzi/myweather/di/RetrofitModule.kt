@@ -17,7 +17,7 @@ object RetrofitModule {
 
     private const val API_KEY = "bd6726e1be1b7902b03d4eb347360c23"
 
-    private const val APP_ID_QUERY_PARAM = "bd6726e1be1b7902b03d4eb347360c23"
+    private const val APP_ID_QUERY_PARAM = "appid"
 
     @Provides
     @Singleton

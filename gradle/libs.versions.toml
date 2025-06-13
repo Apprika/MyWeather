@@ -1,5 +1,6 @@
 [versions]
-com-android-application = "8.7.3"
+viewmodel-compose = "2.9.1"
+com-android-application = "8.9.2"
 com-google-hilt-android = "2.51.1"
 androidx-core-ktx = "1.15.0"
 junit = "4.13.2"
@@ -14,7 +15,7 @@ glide = "4.16.0"
 com-squareup-retrofit2-gson = "2.9.0"
 livedata = "1.7.5"
 org-jetbrains-kotlin-android = "2.1.0"
-androidx-activity-activity-ktx= "1.9.3"
+androidx-activity-activity-ktx = "1.9.3"
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "com-android-application" }
@@ -47,3 +48,4 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 androidx-activity-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidx-activity-activity-ktx" }
 androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "androidx-lifecycle-livedata-ktx" }
 org-jetbrains-kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "org-jetbrains-kotlinx-coroutines-android" }
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "viewmodel-compose" }

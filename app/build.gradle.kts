@@ -75,6 +75,7 @@ dependencies {
     implementation(libs.org.jetbrains.kotlinx.coroutines.android)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.activity.activity.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
