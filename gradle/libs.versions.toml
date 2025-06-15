@@ -1,12 +1,9 @@
 [versions]
 accompanistPermissions = "0.37.1"
 constraintlayoutCompose = "1.1.1"
-coreSplashscreen = "1.0.1"
-flipper = "0.273.0"
 kotlinxDatetime = "0.6.2"
 loggingInterceptor = "4.12.0"
 playServicesLocation = "21.3.0"
-soloader = "0.10.5"
 viewmodel-compose = "2.9.1"
 com-android-application = "8.9.3"
 com-google-hilt-android = "2.56.2"
@@ -35,11 +32,7 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
-flipper = { module = "com.facebook.flipper:flipper", version.ref = "flipper" }
-flipper-network-plugin = { module = "com.facebook.flipper:flipper-network-plugin", version.ref = "flipper" }
-flipper-noop = { module = "com.facebook.flipper:flipper-noop", version.ref = "flipper" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
-
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
@@ -49,18 +42,14 @@ androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "livedata" }
-
 com-google-dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "com-google-hilt-android" }
 com-google-dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "com-google-hilt-android" }
-
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 com-squareup-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 com-github-bumptech-glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-
-
 com-squareup-retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "com-squareup-retrofit2-gson" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidx-lifecycle-livedata-ktx" }
 androidx-activity-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidx-activity-activity-ktx" }
@@ -70,4 +59,3 @@ logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", ver
 org-jetbrains-kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "org-jetbrains-kotlinx-coroutines-android" }
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "viewmodel-compose" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
-soloader = { module = "com.facebook.soloader:soloader", version.ref = "soloader" }
