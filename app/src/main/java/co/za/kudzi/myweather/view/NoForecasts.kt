@@ -1,4 +1,4 @@
-package co.za.kudzi.myweather.screens
+package co.za.kudzi.myweather.view
 
 import android.util.Log
 import androidx.compose.runtime.Composable

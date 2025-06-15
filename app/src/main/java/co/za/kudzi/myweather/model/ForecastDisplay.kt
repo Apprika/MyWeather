@@ -8,7 +8,7 @@ data class ForecastDisplay(
 data class ForecastsDisplay(
     val dt:Long,
     val dayOfTheWeek: String,
-    val degrees: Double,
+    val degrees: String,
     val iconDrawable: String,
     val background: Int
 )

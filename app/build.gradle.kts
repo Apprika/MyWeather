@@ -1,3 +1,4 @@
+import java.io.FileInputStream
 import java.util.Properties
 
 plugins {
@@ -8,9 +9,15 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties()
+keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+
 android {
-    namespace = "co.za.kudzi.myweather"
+
     compileSdk = 35
+
+    namespace = "co.za.kudzi.myweather"
 
     dataBinding {
         enable = true
@@ -20,30 +27,33 @@ android {
         correctErrorTypes = true
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            keyAlias = keystoreProperties["keyAlias"] as String
+        }
+    }
+
     defaultConfig {
         applicationId = "co.za.kudzi.myweather"
         minSdk = 27
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
-
-        val localPropertiesFile = project.rootProject.file("local.properties")
-        val localProperties = Properties()
-        localProperties.load(localPropertiesFile.inputStream())
-
-        buildConfigField(type = "String", name = "API_KEY", value = localProperties.getProperty("OPEN_WEATHER_API_KEY") ?: "")
-
+        buildConfigField(type = "String", name = "API_KEY", value = keystoreProperties.getProperty("openWeatherApiKey") ?: "")
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
@@ -106,6 +116,4 @@ dependencies {
     implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.kotlinx.datetime)
     implementation(libs.accompanist.permissions)
-
-
 }

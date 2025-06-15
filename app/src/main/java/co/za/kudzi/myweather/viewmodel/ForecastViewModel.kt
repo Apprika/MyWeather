@@ -1,6 +1,7 @@
 package co.za.kudzi.myweather.viewmodel
 
 import android.location.Location
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -49,12 +50,17 @@ class ForecastViewModel @Inject constructor(private val repository: ForecastRepo
     }
 
     private fun handleSuccess(response: Forecast) {
-        _uiState.value = ForecastUiState.Success(
-            ForecastDisplay(
-                response.city.name,
-                response.list.map { it -> it.toDisplay() }.toList()
-            )
+
+        Log.i("Weather", "Response is " + response.list)
+
+        val what = ForecastDisplay(
+            response.city.name,
+            response.list.map { it.toDisplay() }.toList()
         )
+
+        Log.i("Weather","List is $what")
+
+        _uiState.value = ForecastUiState.Success(what)
     }
 
     private fun handleException(ex: Exception) {

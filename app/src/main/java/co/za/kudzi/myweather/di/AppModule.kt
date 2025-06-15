@@ -5,8 +5,6 @@ import co.za.kudzi.myweather.network.NetworkConstants.QUERY_PARAM_APP_ID
 import co.za.kudzi.myweather.network.WeatherService
 import co.za.kudzi.myweather.repository.ForecastRepository
 import co.za.kudzi.myweather.repository.ForecastRepositoryImpl
-import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
-import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,7 +43,6 @@ object AppModule {
             .client(
                 OkHttpClient()
                     .newBuilder()
-                    .addNetworkInterceptor(FlipperOkhttpInterceptor(NetworkFlipperPlugin()))
                     .addInterceptor(HttpLoggingInterceptor())
                     .addInterceptor { addApiKeyToRequest(it) }
                     .build()

@@ -1,4 +1,4 @@
-package co.za.kudzi.myweather.util
+package co.za.kudzi.myweather.utility
 
 import co.za.kudzi.myweather.R
 

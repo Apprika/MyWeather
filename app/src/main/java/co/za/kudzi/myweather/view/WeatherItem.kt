@@ -1,12 +1,10 @@
-package co.za.kudzi.myweather.screens
+package co.za.kudzi.myweather.view
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-// import androidx.compose.foundation.layout.Box // Box would be removed
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.height // Used in ElevatedCard
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
@@ -15,8 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.paint // Still needed for ConstraintLayout background
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,7 +24,7 @@ import co.za.kudzi.myweather.R
 @Composable
 fun WeatherCard(
     dayOfTheWeek: String,
-    degrees: Double,
+    degrees: String,
     iconDrawable: Int,
     background: Int
 ) {
@@ -73,7 +70,7 @@ fun WeatherCard(
             )
 
             Text(
-                text = "$degrees\u2103",
+                text = degrees,
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier
                     .padding(horizontal = 8.dp, vertical = 4.dp)
@@ -90,9 +87,9 @@ fun WeatherCard(
 @Composable
 fun WeatherCardPreview(
     day: String = "Monday",
-    degrees: Double = 20.0,
-    background: Int = R.drawable.group_sunny, // Ensure this drawable exists
-    image: Int = R.drawable.property_1_03_sunrise_light, // Ensure this drawable exists
+    degrees: String = "20°",
+    background: Int = R.drawable.group_sunny,
+    image: Int = R.drawable.property_1_03_sunrise_light
 ) {
     WeatherCard(
         dayOfTheWeek = day,

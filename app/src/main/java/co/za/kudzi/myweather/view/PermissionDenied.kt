@@ -1,4 +1,4 @@
-package co.za.kudzi.myweather.screens
+package co.za.kudzi.myweather.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -22,8 +22,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -47,13 +49,11 @@ fun PermissionDenied(
         )
     ) {
         Card(
-            shape = RoundedCornerShape(8.dp),
+            shape = RoundedCornerShape(16.dp),
             modifier = Modifier
                 .fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surface
-            ),
-            elevation = CardDefaults.cardElevation(defaultElevation = 16.dp)
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+            colors = CardDefaults.cardColors(containerColor = Color.White),
         ) {
             Column(
                 modifier = Modifier
@@ -74,12 +74,10 @@ fun PermissionDenied(
                 Text(
                     fontSize = 16.sp,
                     textAlign = TextAlign.Center,
-                    text = "Oops.... We need access to your location to provide you with the best weather possible"
+                    text = stringResource(R.string.location_request_reason)
                 )
 
-                Spacer(
-                    modifier = Modifier.height(16.dp)
-                )
+                Spacer(modifier = Modifier.height(16.dp))
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -90,14 +88,14 @@ fun PermissionDenied(
                             onTryAgain()
                         },
                     ) {
-                        Text("Try again")
+                        Text(stringResource(R.string.location_request_grant_access))
                     }
                     TextButton(
                         onClick = {
                             onExit()
                         },
                     ) {
-                        Text("Exit")
+                        Text(stringResource(R.string.location_request_no_thank_you))
                     }
                 }
             }
@@ -105,7 +103,7 @@ fun PermissionDenied(
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFCCCCCC)
+@Preview
 @Composable
 fun ImageAndButtonsDialogPreview() {
     MyWeatherTheme {

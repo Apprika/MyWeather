@@ -1,4 +1,4 @@
-package co.za.kudzi.myweather.screens
+package co.za.kudzi.myweather.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,7 +17,7 @@ fun LoadingScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        LinearProgressIndicator()
+        CircularProgressIndicator()
     }
 }
 
