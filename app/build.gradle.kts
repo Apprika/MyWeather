@@ -9,9 +9,8 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
-val keystorePropertiesFile = rootProject.file("keystore.properties")
-val keystoreProperties = Properties()
-keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+val apiKeyProperties = Properties()
+apiKeyProperties.load(FileInputStream(rootProject.file("keys.properties")))
 
 android {
 
@@ -37,7 +36,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        buildConfigField(type = "String", name = "API_KEY", value = keystoreProperties.getProperty("openWeatherApiKey") ?: "")
+        buildConfigField(type = "String", name = "API_KEY", value = apiKeyProperties.getProperty("openWeatherApiKey") ?: "")
     }
 
     buildTypes {
