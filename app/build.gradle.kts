@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
@@ -21,7 +23,7 @@ android {
     defaultConfig {
         applicationId = "co.za.kudzi.myweather"
         minSdk = 27
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -29,6 +31,13 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val localPropertiesFile = project.rootProject.file("local.properties")
+        val localProperties = Properties()
+        localProperties.load(localPropertiesFile.inputStream())
+
+        buildConfigField(type = "String", name = "API_KEY", value = localProperties.getProperty("OPEN_WEATHER_API_KEY") ?: "")
+
     }
 
     buildTypes {
@@ -46,6 +55,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.15"
@@ -58,29 +68,44 @@ android {
 }
 
 dependencies {
+
+    // Hilt
+    implementation(libs.com.google.dagger.hilt.android)
+    kapt(libs.com.google.dagger.hilt.compiler)
+
+    // [Compose]
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
     implementation(libs.com.squareup.retrofit)
     implementation(libs.com.github.bumptech.glide)
     implementation(libs.com.squareup.retrofit.gson)
     implementation(libs.androidx.compose.runtime.livedata)
-    implementation(libs.com.google.dagger.hilt.android)
-    kapt(libs.androidx.hilt.compiler)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
     implementation(libs.org.jetbrains.kotlinx.coroutines.android)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.activity.activity.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.play.services.location)
+    debugImplementation(libs.flipper)
+    debugImplementation(libs.soloader)
+    releaseImplementation(libs.flipper.noop)
+    debugImplementation(libs.flipper.network.plugin)
+    implementation(libs.logging.interceptor)
+    implementation(libs.androidx.constraintlayout.compose)
+    implementation(libs.kotlinx.datetime)
+    implementation(libs.accompanist.permissions)
+
+
 }
