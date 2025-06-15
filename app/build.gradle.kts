@@ -27,15 +27,6 @@ android {
         correctErrorTypes = true
     }
 
-    signingConfigs {
-        create("release") {
-            storeFile = file(keystoreProperties["storeFile"] as String)
-            storePassword = keystoreProperties["storePassword"] as String
-            keyPassword = keystoreProperties["keyPassword"] as String
-            keyAlias = keystoreProperties["keyAlias"] as String
-        }
-    }
-
     defaultConfig {
         applicationId = "co.za.kudzi.myweather"
         minSdk = 27
@@ -53,7 +44,6 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
