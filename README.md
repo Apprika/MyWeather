@@ -50,3 +50,12 @@ The focus of the codebase was simplicity, yet showcasing clean and easy-to-follo
 * Android Studio
 
 ## Additional Comments
+
+## Screenshots
+![PHOTO-2025-06-15-22-07-46](https://github.com/user-attachments/assets/c1c554f7-655c-4418-a9c9-7f03c5801ac2)
+![Screenshot_20250615_220923_MyWeather](https://github.com/user-attachments/assets/b24efa8a-82d7-493a-9456-11b8c0a0c34c)
+
+
+
+
+
