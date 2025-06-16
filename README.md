@@ -34,12 +34,17 @@ The project uses GitHub Actions to build a signed AAB file. It uses GitHub secre
 * Android Device - minSdkVersion 29 (Emulators are weird with location requests)
 
 ## Additional Comments
-
 * Instead of the background on the whole screen. I ended up putting it per forecast since each day can have different weather.
 * Also ended up using the icons provided by OpenWeather.
 
 ## Screenshots
+
 | Forecast     | Location Request | Generic Error |
 |--------------|------------------|---------------|
 | Content Cell | Content Cell     | Content Cell  |
+
+
+
+
+
 
