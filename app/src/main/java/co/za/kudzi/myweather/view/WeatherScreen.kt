@@ -32,7 +32,6 @@ fun HomeScreen(forecastViewModel: ForecastViewModel = viewModel()) {
         FetchWeather(forecastViewModel)
     } else {
         if (locationPermissionState.status.shouldShowRationale) {
-            Log.i("Home", "We should show rational")
             PermissionDenied(onDismiss = { }, onTryAgain = {
                 locationPermissionState.launchPermissionRequest()
             }, onExit = {
@@ -54,6 +53,8 @@ private fun FetchWeather(forecastViewModel: ForecastViewModel) {
 
     val context = LocalContext.current
 
+    val activity = LocalActivity.current
+
     val collectAsState = forecastViewModel.uiState.collectAsState()
 
     val fusedLocationClient = remember {
@@ -61,9 +62,7 @@ private fun FetchWeather(forecastViewModel: ForecastViewModel) {
     }
 
     fusedLocationClient.lastLocation.addOnSuccessListener {
-        it?.let {
-            forecastViewModel.setLocation(it)
-        }
+        forecastViewModel.setLocation(it)
     }.addOnFailureListener { it ->
         Log.i("HomeScreen", "Failed to get location: ${it.message}")
     }.addOnCanceledListener {
@@ -73,9 +72,11 @@ private fun FetchWeather(forecastViewModel: ForecastViewModel) {
     when (val state = collectAsState.value) {
         ForecastUiState.Empty -> EmptyWeather()
         ForecastUiState.Loading -> LoadingScreen()
-        is ForecastUiState.Error -> Error(state.message)
         is ForecastUiState.Success -> WeatherLoaded(state.data)
+        is ForecastUiState.Error -> GenericError(
+            error = state.message,
+            onDismiss = { activity?.finish() },
+            onExit = { activity?.finish() })
+
     }
-
 }
-

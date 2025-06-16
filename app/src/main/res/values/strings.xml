@@ -3,4 +3,5 @@
     <string name="location_request_reason">MyWeather needs access to your location to give you forecast closest to you.</string>
     <string name="location_request_grant_access">Grant access</string>
     <string name="location_request_no_thank_you">No thank you</string>
+    <string name="button_okay">Okay</string>
 </resources>

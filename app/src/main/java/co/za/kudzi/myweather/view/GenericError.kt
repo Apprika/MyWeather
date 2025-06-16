@@ -14,7 +14,6 @@ import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -36,10 +35,10 @@ import co.za.kudzi.myweather.ui.theme.MyWeatherTheme
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun PermissionDenied(
+fun GenericError(
     onDismiss: () -> Unit,
-    onTryAgain: () -> Unit,
     onExit: () -> Unit,
+    error: String
 ) {
     BasicAlertDialog(
         onDismissRequest = { onDismiss() },
@@ -74,7 +73,7 @@ fun PermissionDenied(
                 Text(
                     fontSize = 16.sp,
                     textAlign = TextAlign.Center,
-                    text = stringResource(R.string.location_request_reason)
+                    text = error
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -85,17 +84,10 @@ fun PermissionDenied(
                 ) {
                     TextButton(
                         onClick = {
-                            onTryAgain()
-                        },
-                    ) {
-                        Text(stringResource(R.string.location_request_grant_access))
-                    }
-                    TextButton(
-                        onClick = {
                             onExit()
                         },
                     ) {
-                        Text(stringResource(R.string.location_request_no_thank_you))
+                        Text(stringResource(R.string.button_okay))
                     }
                 }
             }
@@ -105,12 +97,13 @@ fun PermissionDenied(
 
 @Preview
 @Composable
-fun ImageAndButtonsDialogPreview() {
+fun ErrorPreview() {
     MyWeatherTheme {
         val showDialog = remember { mutableStateOf(true) }
-        PermissionDenied(
+        GenericError(
             onDismiss = { showDialog.value = false },
             onExit = {},
-            onTryAgain = {})
+            error = "Error message here"
+        )
     }
 }
