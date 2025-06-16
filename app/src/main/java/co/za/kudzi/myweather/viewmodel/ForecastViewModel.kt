@@ -27,6 +27,8 @@ class ForecastViewModel @Inject constructor(private val repository: ForecastRepo
 
     private val shouldFetchData = mutableStateOf(true)
 
+    private val STATUS_CODE_TOO_MANY_ATTEMPTS = 429
+
     fun fetchForeCast(latitude: Double, longitude: Double) {
 
         _uiState.value = ForecastUiState.Loading
@@ -50,32 +52,32 @@ class ForecastViewModel @Inject constructor(private val repository: ForecastRepo
     }
 
     private fun handleSuccess(response: Forecast) {
-
-        Log.i("Weather", "Response is " + response.list)
-
-        val what = ForecastDisplay(
-            response.city.name,
-            response.list.map { it.toDisplay() }.toList()
+        _uiState.value = ForecastUiState.Success(
+            ForecastDisplay(
+                response.city.name,
+                response.list.map { it.toDisplay() }.toList()
+            )
         )
-
-        Log.i("Weather","List is $what")
-
-        _uiState.value = ForecastUiState.Success(what)
     }
 
     private fun handleException(ex: Exception) {
-        if (ex is HttpException && ex.code() == 429) {
+        if (ex is HttpException && ex.code() == STATUS_CODE_TOO_MANY_ATTEMPTS) {
             _uiState.value = ForecastUiState.Error("Exceeded API query limit")
         } else {
             _uiState.value = ForecastUiState.Error("An error has occurred: \n $ex")
         }
     }
 
-    fun setLocation(location: Location) {
-        if (shouldFetchData.value) {
-            shouldFetchData.value = false
-            fetchForeCast(location.latitude, location.longitude)
+    fun setLocation(location: Location?) {
+        if (location != null) {
+            if (shouldFetchData.value) {
+                shouldFetchData.value = false
+                fetchForeCast(location.latitude, location.longitude)
+            }
+        } else {
+            _uiState.value = ForecastUiState.Error("Failed to retrieve location from device. Could be an emulator error")
         }
+
     }
 
 }
